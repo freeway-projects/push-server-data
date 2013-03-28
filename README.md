@@ -33,8 +33,7 @@ to a file on the server at
 
 If you have restrictions on SSH on the backup server change the configuration to allow the server to log in.
 
-
-
+The script will need to run mysql, mysqldump and pg_dump without being prompted for a password.
 
 This script should normally be copied to /usr/local/sbin and made runnable by root.  It can be run via cron and would normally be run once per day when the server is quiet.
 
