@@ -24,7 +24,7 @@ Then copy the public key which is in
 ```
 ~/.ssh/id_dsa.pub
 ```
-to a file on the server at
+to a file on the backup server at
 
 ```
 # /home/servername/.ssh/authorized_keys
