@@ -3,6 +3,10 @@ push-server-data
 
 Basic script used to push the data on a Unix type servers to a backup location.
 
+The principle behind backups should be that the server can be rebuilt from a vanilla server if needed.  There should be a server document which holds the full details of how the server has been configured.
+
+Therefore, by using the server document and the backups the server it should be possible to rebuild the server completely.
+
 Installation
 ============
 
