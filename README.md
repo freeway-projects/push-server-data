@@ -1,5 +1,4 @@
-push-server-data
-================
+## push-server-data
 
 Basic script used to push the data on a Unix type servers to a backup location.
 
@@ -7,10 +6,13 @@ The principle behind backups should be that the server can be rebuilt from a van
 
 Therefore, by using the server document and the backups the server it should be possible to rebuild the server completely.
 
-Installation
-============
+## Installation
 
-Set up an account on the backup server to receive the backup data.
+Basically the backup server will have a local account on it which will used to hold the backup data.  Data will be sent to this account from the server which is being backed up via SSH.
+
+### Set up an account
+
+First up an account on the backup server to receive the backup data.
 
 ```
 # adduser --disabled-password --gecos "" servername
@@ -37,8 +39,14 @@ to a file on the backup server at
 
 If you have restrictions on SSH on the backup server change the configuration to allow the server to log in.
 
-The script will need to run mysql, mysqldump and pg_dump without being prompted for a password.
+### Install the script
 
 This script should normally be copied to /usr/local/sbin and made runnable by root.  It can be run via cron and would normally be run once per day when the server is quiet.
+
+The backup script will need to run mysql, mysqldump and pg_dump without being prompted for a password.  This can be achieved by using a ~/.my.cnf file.
+
+### Set up rdiffbackup on the backup server
+
+On the backup server data is rsync'd over from the server being backed up.  To make safety copies of this data it is copied to another location using rdiffbackup.  To make this automatic the script create_rdiffbackup_copies.sh is run regularly on the backup server itself.
 
 
