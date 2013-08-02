@@ -28,6 +28,9 @@ do
         echo "Making rdiffbackups..."
         mkdir -p /home/rdiffbackups/$(basename ${dir})
         rdiff-backup --print-statistics ${dir}/backups /home/rdiffbackups/$(basename ${dir})
+        
+        echo "Tell the server to delete rdiff-backups which are too old to prevent the server filling up..."
+        rdiff-backup --remove-older-than 3M --force /home/rdiffbackups/$(basename ${dir})
 
     fi
 done
