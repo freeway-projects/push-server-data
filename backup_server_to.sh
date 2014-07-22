@@ -86,7 +86,7 @@ for DIR in ${Locations[*]}
 do
    echo
    echo "Backing up ${DIR} to ${REMOTE_SRV}..."
-   rsync -avz --delete ${DIR}/ ${SERVER}@${REMOTE_SRV}:backups${DIR};
+   rsync -avz --delete --relative ${DIR}/ ${SERVER}@${REMOTE_SRV}:backups;
 done
 
 echo
