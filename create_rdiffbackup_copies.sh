@@ -21,17 +21,19 @@ echo "Looping through the home directories to make rdiffbackup copies..."
 for dir in $(find /home/ -maxdepth 1 -mindepth 1 -type d)
 do
 
-    if [ ${dir} != '/home/devback1admin' ] && [ ${dir} != '/home/rdiffbackups' ] ; then
+    if [ ${dir} != '/home/lost+found' ] ; then
 
         echo
         echo `date`
-        echo "Making rdiffbackups..."
-        mkdir -p /home/rdiffbackups/$(basename ${dir})
-        rdiff-backup --print-statistics ${dir}/backups /home/rdiffbackups/$(basename ${dir})
-        
+        echo "Making rdiffbackups for $(basename ${dir}) ..."
+
+        mkdir -p /rdiffbackups/$(basename ${dir})
+        rdiff-backup --print-statistics ${dir}/backups /rdiffbackups/$(basename ${dir})
+
         echo "Tell the server to delete rdiff-backups which are too old to prevent the server filling up..."
-        rdiff-backup --remove-older-than 3M --force /home/rdiffbackups/$(basename ${dir})
+        rdiff-backup --remove-older-than 3M --force /rdiffbackups/$(basename ${dir})
 
     fi
-done
 
+
+done
