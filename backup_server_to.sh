@@ -71,7 +71,7 @@ for db in $databases; do
   if [ $db != 'information_schema' ]; then
 
     echo "Dumping out MySQL database: ${db} ..."
-    mysqldump --databases $db > /var/backups/mysql_backups/${db}.bak
+    mysqldump $db > /var/backups/mysql_backups/${db}.bak
   fi
 
 done
